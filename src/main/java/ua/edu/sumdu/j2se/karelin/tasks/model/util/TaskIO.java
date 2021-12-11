@@ -40,7 +40,7 @@ public class TaskIO {
                     oos.writeObject(task.getTime());
                 }
                 oos.flush();
-                log.error("writing data to file - OK");
+                log.info("writing data to file - OK");
                 //   System.out.println("wrote "+ task.getTitle());
             }
         } catch (IOException e) {
