@@ -57,8 +57,7 @@ public class ViewForChange implements View {
                 break;
             }
         }
-        System.out.println("Change successful");
-        return t;
+       return t;
     }
 
     @Override
@@ -73,6 +72,6 @@ public class ViewForChange implements View {
 
     @Override
     public void printMessage(String message) {
-
+        System.out.println("..you made now change to current task..");
     }
 }

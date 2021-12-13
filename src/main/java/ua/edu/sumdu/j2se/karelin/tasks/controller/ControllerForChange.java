@@ -15,9 +15,21 @@ public class ControllerForChange extends Controller {
     public int action(AbstractTaskList taskList) {
         view.printInfo(taskList);
         if (task != null) {
-            task = view.getInfo(task);
+            Task currTask = null;
+            try {
+                currTask = task.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            view.getInfo(task);
+            if (task.equals(currTask)) {
+                view.printMessage("..you made now change to current task..");
+            } else {
+             if (ControllerForAllert.getNotificator()!= null)ControllerForAllert.getNotificator().setWasInfoTask(task);
+                taskList.notifyChange("..change was successful..");
+            }
+
         }
         return CURRENT_LIST;
     }
-
 }

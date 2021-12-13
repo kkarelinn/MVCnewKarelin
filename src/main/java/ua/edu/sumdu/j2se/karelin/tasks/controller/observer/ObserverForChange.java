@@ -1,5 +1,6 @@
 package ua.edu.sumdu.j2se.karelin.tasks.controller.observer;
 
+import ua.edu.sumdu.j2se.karelin.tasks.controller.ControllerForAllert;
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.util.TaskIO;
 import ua.edu.sumdu.j2se.karelin.tasks.view.View;
@@ -17,6 +18,7 @@ public class ObserverForChange {
     }
 
     public void update(String message) {
+
       TaskIO.writeBinary(list, new File("tasks.bin"));
       viewObserver.printMessage(message);
     }
