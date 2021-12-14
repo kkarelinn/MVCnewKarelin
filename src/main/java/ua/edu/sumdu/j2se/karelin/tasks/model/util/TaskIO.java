@@ -41,11 +41,9 @@ public class TaskIO {
                 }
                 oos.flush();
                 log.info("writing data to file - OK");
-                //   System.out.println("wrote "+ task.getTitle());
             }
         } catch (IOException e) {
             log.error("Error to write file");
-            System.out.println(e.getMessage());
         }
     }
 
@@ -79,7 +77,6 @@ public class TaskIO {
             log.info("reading file - OK");
         } catch (IOException | ClassNotFoundException e) {
             log.error("Mistake in file reading");
-            System.out.println(e.getMessage());
         }
     }
 
@@ -91,7 +88,7 @@ public class TaskIO {
         try (FileOutputStream fos = new FileOutputStream(file)) {
             write(tasks, fos);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            log.error("Mistake in write binary file", e);
         }
 
 
@@ -106,7 +103,7 @@ public class TaskIO {
             read(tasks, fis);
         } catch (IOException e) {
             System.out.println("You have some problems with base file..");
-            System.out.println(e.getMessage());
+            log.error("Mistake in read binary file", e);
 
         }
 
@@ -156,7 +153,7 @@ public class TaskIO {
             write(tasks, fw);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            log.error("Mistake in write JSon file", e);
         }
     }
 
@@ -168,7 +165,7 @@ public class TaskIO {
         try (FileReader fr = new FileReader(file)) {
             read(tasks, fr);
         } catch (Exception e) {
-            e.getMessage();
+            log.error("Mistake in read JSon file", e);
         }
     }
 
@@ -258,11 +255,8 @@ public class TaskIO {
                     task = new Task(title, LocalDateTime.parse(startS), LocalDateTime.parse(endS), interval);
                     task.setActive(isActive);
                 }
-
                 resultList.add(task);
-
                 jsonReader.endObject();
-
             }
 
             jsonReader.endArray();

@@ -14,33 +14,7 @@ public class Tasks {
       //вариант с new ArrayList()
        return StreamSupport.stream(tasks.spliterator(), false).filter((t) -> t.nextTimeAfter(start) != null &&
                (t.nextTimeAfter(start).compareTo(end)) <= 0).collect(Collectors.toList());
-       /* return new Iterable<>() {
 
-            @Override
-            public String toString() {
-                StringBuilder sb = new StringBuilder("TASKs AHEAD (from Iterable<Task>) ");
-                Iterator<Task> it = iterator();
-                if (!it.hasNext())
-                    return sb.append("[]").toString();
-
-                sb.append("[");
-                while (it.hasNext()) {
-                    sb.append("\n");
-                    Task t = it.next();
-                    sb.append(t.toString());
-                    if (!it.hasNext())
-                        return sb.append("\n]").toString();
-                    sb.append(", ");
-                }
-                return sb.toString();
-            }
-
-            @Override
-            public Iterator<Task> iterator() {
-                return StreamSupport.stream(tasks.spliterator(), false).filter((t) -> t.nextTimeAfter(start) != null &&
-                        (t.nextTimeAfter(start).compareTo(end)) <= 0).collect(Collectors.toList()).iterator();
-            }
-        };*/
     }
 
 

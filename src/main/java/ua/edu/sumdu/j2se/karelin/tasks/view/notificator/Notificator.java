@@ -8,6 +8,8 @@ import java.time.ZoneOffset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static ua.edu.sumdu.j2se.karelin.tasks.view.View.log;
+
 public class Notificator extends Thread {
 
     private AbstractTaskList list;
@@ -34,7 +36,7 @@ public class Notificator extends Thread {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("Mistake in Notificator in sleep", e);
         }
 
         LocalDateTime curTime;
@@ -49,7 +51,7 @@ public class Notificator extends Thread {
                 if (next != null) {
                     boolean wasIn = wasInfo.getOrDefault(t, false);
                     int deltaTime = (int) (next.toEpochSecond(ZoneOffset.UTC) - curTime.toEpochSecond(ZoneOffset.UTC)) / 60;
-                    if (next.isAfter(curTime) && deltaTime < timeInMinutes && !wasIn) {
+                    if (next.isAfter(curTime) && deltaTime <= timeInMinutes && !wasIn) {
                         System.out.println("\n<<<<<Attention!>>>>    " + deltaTime + " minutes before run " + t.getTitle());
                         if (wasInfo.containsKey(t)) { wasInfo.replace(t,true);} else
                             wasInfo.put(t,true);
@@ -61,7 +63,7 @@ public class Notificator extends Thread {
             try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("Mistake in Notificator in sleep", e);
             }
 
         }

@@ -11,6 +11,7 @@ public abstract class AbstractTaskList implements Iterable<Task>,
         Cloneable, Serializable {
 
     static final Logger log = Logger.getLogger(AbstractTaskList.class);
+
     public AbstractTaskList clone() throws CloneNotSupportedException {
         return (AbstractTaskList) super.clone();
     }
@@ -46,7 +47,7 @@ public abstract class AbstractTaskList implements Iterable<Task>,
         return sb.toString();
     }
 
-    private ObserverForChange observer=null;
+    private ObserverForChange observer = null;
 
     public void setObserver(ObserverForChange observer) {
         this.observer = observer;
@@ -54,7 +55,7 @@ public abstract class AbstractTaskList implements Iterable<Task>,
 
     public void notifyChange(String message) {
         if (observer != null)
-        observer.update(message);
+            observer.update(message);
     }
 
 }

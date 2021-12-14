@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
+import static ua.edu.sumdu.j2se.karelin.tasks.view.View.log;
+
 public class ParseData {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -57,7 +59,7 @@ public class ParseData {
                 }
             } catch (IOException e) {
                 System.out.println("Some mistake");
-                e.printStackTrace();
+                log.error("Mistake in reedLine in getBoolean", e);
             }
             System.out.print("Wrong parameter. Enter again: ");
         }

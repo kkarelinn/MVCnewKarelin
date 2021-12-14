@@ -10,7 +10,6 @@ import java.util.Set;
 public class ViewObserverMessage implements View{
     @Override
     public int printInfo(AbstractTaskList list) {
-
         return -1;
     }
 

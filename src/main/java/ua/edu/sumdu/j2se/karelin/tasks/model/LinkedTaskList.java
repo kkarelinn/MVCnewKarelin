@@ -7,8 +7,6 @@ import java.util.stream.StreamSupport;
 
 public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable, Serializable {
 
-    private static final long SERIAL_VERSION_UID = 1L;
-
     private int sizeList;
     private Node headNode;
     private Node finalNode;

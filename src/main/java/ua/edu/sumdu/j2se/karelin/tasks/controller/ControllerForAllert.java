@@ -1,12 +1,9 @@
 package ua.edu.sumdu.j2se.karelin.tasks.controller;
 
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
-import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
 import ua.edu.sumdu.j2se.karelin.tasks.view.notificator.Notificator;
 import ua.edu.sumdu.j2se.karelin.tasks.view.View;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class ControllerForAllert extends Controller {
 

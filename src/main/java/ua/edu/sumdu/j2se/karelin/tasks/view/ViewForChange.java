@@ -34,7 +34,7 @@ public class ViewForChange implements View {
                     t.setTitle(str);
                     break;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("Mistake in getTaskData in ViewForChange", e);
                 }
             }
             case 2 : {

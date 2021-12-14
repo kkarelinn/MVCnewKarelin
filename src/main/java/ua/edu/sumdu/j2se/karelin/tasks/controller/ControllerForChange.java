@@ -19,7 +19,7 @@ public class ControllerForChange extends Controller {
             try {
                 currTask = task.clone();
             } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
+                log.error("Mistake in change process with clone", e);
             }
             view.getInfo(task);
             if (task.equals(currTask)) {

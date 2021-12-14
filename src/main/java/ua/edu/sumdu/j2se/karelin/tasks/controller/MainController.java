@@ -44,6 +44,7 @@ public class MainController extends Controller {
     public void start() {
         TaskIO.readBinary(taskList, new File("tasks.bin"));
         new ObserverForChange(taskList, new ViewObserverMessage());
+        ControllerForAllert.notifyLaunch(taskList, 5);
         log.info("Adding task observer - OK");
 
         action(taskList);

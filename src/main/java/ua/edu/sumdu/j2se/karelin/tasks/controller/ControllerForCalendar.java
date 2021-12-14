@@ -21,7 +21,7 @@ public class ControllerForCalendar extends Controller {
             view.printCalendar(Tasks.calendar(taskList, LocalDateTime.now()
                     , LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY)).with(LocalTime.MIN)));
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            log.error("Mistake to print calendar", e);
         }
 
         return MAIN_MENU_ACTION;
