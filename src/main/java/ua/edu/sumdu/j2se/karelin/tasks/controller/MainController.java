@@ -5,11 +5,19 @@ import ua.edu.sumdu.j2se.karelin.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.controller.observer.ObserverForChange;
 import ua.edu.sumdu.j2se.karelin.tasks.model.util.TaskIO;
 import ua.edu.sumdu.j2se.karelin.tasks.view.*;
+import ua.edu.sumdu.j2se.karelin.tasks.view.notificator.Notificator;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Клас MainController реалує додаток і визначає (створює список) конкретних контролерів
+ * з відповідними View для реалізації необхідного функціоналу додатку
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class MainController extends Controller {
 
     private AbstractTaskList taskList;
@@ -17,13 +25,15 @@ public class MainController extends Controller {
     private final List<Controller> controllers = new ArrayList<Controller>();
 
     public MainController(AbstractTaskList abstractTaskList, View mainView) {
-        super(mainView, MAIN_MENU_ACTION);   //Controller.MAIN_MENU_ACTION - цифра int пункта меню
+        super(mainView, MAIN_MENU_ACTION);
         this.taskList = abstractTaskList;
 
         log.info("\n\nProgram was starting");
 
 
-        //создаем список контроллеров и задаем каждому действие, которое он может делать
+        /**
+         * Створення списку конкретних реалізацій Controller-View для необхідного функціоналу додатку
+         */
         controllers.add(this);
         controllers.add(new ControllerForCurrentTaskList(new ViewForCurrentTaskList(), CURRENT_LIST));
         controllers.add(new ControllerForCalendar(new ViewForCalendar(), CALENDAR_ACTION));
@@ -37,10 +47,14 @@ public class MainController extends Controller {
     }
 
     public MainController() {
-        super(new MainView(), MAIN_MENU_ACTION);   //Controller.MAIN_MENU_ACTION - цифра int пункта меню
+        super(new MainView(), MAIN_MENU_ACTION);
         this.taskList = new ArrayTaskList();
     }
 
+    /**
+     * Основний метод запуску програми. Встановлює Наглядача, Нотифікатор (за замовчуванням),
+     * читає файл із збереженими задачами. Запускає головне меню програми.
+     */
     public void start() {
         TaskIO.readBinary(taskList, new File("tasks.bin"));
         new ObserverForChange(taskList, new ViewObserverMessage());
@@ -50,6 +64,11 @@ public class MainController extends Controller {
         action(taskList);
     }
 
+    /**
+     * Метод циклічно опитує контролери для виконання вибраної користувачем дії
+     * @param taskList - AbstractTaskList - список задач
+     * @return int - дія, що відповідає функції додатку
+     */
     @Override
     public int action(AbstractTaskList taskList) {
         int action = view.printInfo(taskList); //отрисовка главного меню и возврат действия пользователя

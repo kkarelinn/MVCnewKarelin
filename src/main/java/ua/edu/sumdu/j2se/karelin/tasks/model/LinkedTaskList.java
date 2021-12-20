@@ -5,12 +5,24 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * Клас LinkedTaskList  є реалізацією списку запланованих задач на певний проміжок часу
+ * Має функції додавання задач, видалення, редагування, створення стріму і т.п.
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable, Serializable {
 
     private int sizeList;
     private Node headNode;
     private Node finalNode;
 
+    /**
+     * Метод глибокого клонування списка задача
+     * @return LinkedTaskList глибоке клонування конкретного листа
+     * @throws CloneNotSupportedException
+     */
     @Override
     public LinkedTaskList clone() throws CloneNotSupportedException {
         LinkedTaskList listClone = (LinkedTaskList) super.clone();
@@ -142,12 +154,19 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
         return currentNode.getTask();
     }
 
+    /**
+     * Метод повертає e-num параметр, що визначаэ тип об'єкту листа
+     * @return e-num
+     */
     @Override
     ListTypes.types getType() {
         return ListTypes.types.LINKED;
     }
 
-
+    /**
+     * Створення ітератору з колекції, що дозволяє пройтись по всім елементам (задачам) зі списку
+     * @return ітератор
+     */
     @Override
     public Iterator<Task> iterator() {
 
@@ -176,6 +195,11 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
         };
     }
 
+    /**
+     * Перевизначення equals методу для вірного порівняння списків задач
+     * @param o - вхідний параметр (інший обьєкт)
+     * @return - true - списки однакові, інакше - false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -194,6 +218,10 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
         return true;
     }
 
+    /**
+     * Перевизнаяення hashcode методу
+     * @return - хешкод
+     */
     @Override
     public int hashCode() {
         if (headNode == null) return 0;
@@ -219,11 +247,18 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
         return null;
     }
 
+    /**
+     * Створення СТРІМа із списку задач
+     * @return СТРІМ із обьєктів задач
+     */
     @Override
     public Stream<Task> getStream() {
         return StreamSupport.stream(this.spliterator(), false);
     }
 
+    /**
+     * Внутрішній допоміжний клас для обьєкта Нод, що потрібен для створення зв'язного списку
+     */
     private static class Node {
         private Task task;
         private Node prev;

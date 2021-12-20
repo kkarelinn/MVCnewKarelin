@@ -4,6 +4,11 @@ import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
 import ua.edu.sumdu.j2se.karelin.tasks.view.View;
 
+/**
+ * Клас ControllerForAddTask призначений для реалізації функції додатку,
+ * що полягає у створенні нової задачі та додаванні її у список.
+ * Взаємодіє з відповідною ViewForAddTask
+ */
 public class ControllerForAddTask extends Controller {
     public ControllerForAddTask(View view, int actionToPerform) {
         super(view, actionToPerform);

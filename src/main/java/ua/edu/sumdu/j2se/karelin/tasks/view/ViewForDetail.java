@@ -2,12 +2,16 @@ package ua.edu.sumdu.j2se.karelin.tasks.view;
 
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
-
-import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Map;
-import java.util.Set;
 
+/**
+ * Клас ViewForDetail реалізує додаток і виводить на консоль
+ * детальну інформацію про вибрану задачу зі списку.
+ * Взаємодіє із відповідним контролером ControllerForDetail
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class ViewForDetail implements View {
 
     @Override
@@ -16,11 +20,6 @@ public class ViewForDetail implements View {
         int index = ParseData.getActionFromLine(list.size());
        return index;
          }
-
-    @Override
-    public void printCalendar(Map<LocalDateTime, Set<Task>> map) {
-    }
-
 
     @Override
     public Task getInfo(Task task) {
@@ -41,11 +40,6 @@ public class ViewForDetail implements View {
         System.out.println("---------------------------");
 
         return null;
-    }
-
-    @Override
-    public int getInfo() {
-        return 0;
     }
 
     @Override

@@ -3,10 +3,14 @@ package ua.edu.sumdu.j2se.karelin.tasks.view;
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
 
-import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Set;
-
+/**
+ * Клас ViewForCurrentTaskList реалізує додаток і виводить на консоль
+ * інформацію про перелік задач, що містіться на даний момент у списку.
+ * Взаємодіє із відповідним контролером ControllerForCurrentTaskList
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class ViewForCurrentTaskList implements View {
 
     @Override
@@ -19,17 +23,8 @@ public class ViewForCurrentTaskList implements View {
     }
 
     @Override
-    public void printCalendar(Map<LocalDateTime, Set<Task>> map) {
-    }
-
-    @Override
     public Task getInfo(Task task) {
         return null;
-    }
-
-    @Override
-    public int getInfo() {
-        return 0;
     }
 
     @Override

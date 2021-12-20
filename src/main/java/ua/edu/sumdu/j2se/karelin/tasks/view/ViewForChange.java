@@ -2,11 +2,16 @@ package ua.edu.sumdu.j2se.karelin.tasks.view;
 
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
-
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Set;
 
+/**
+ * Клас ViewForChange реалізує додаток і виводить на консоль інформацію,
+ * що дозволяє змінити параметри вибраної задачі.
+ * Взаємодіє із відповідним контролером ControllerForChange
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class ViewForChange implements View {
     @Override
     public int printInfo(AbstractTaskList list) {
@@ -17,10 +22,6 @@ public class ViewForChange implements View {
         System.out.println("4. Set ACTIVITY.");
         System.out.print("Enter your choice: ");
   return -1;
-    }
-
-    @Override
-    public void printCalendar(Map<LocalDateTime, Set<Task>> map) {
     }
 
     @Override
@@ -58,11 +59,6 @@ public class ViewForChange implements View {
             }
         }
        return t;
-    }
-
-    @Override
-    public int getInfo() {
-        return 0;
     }
 
     @Override

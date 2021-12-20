@@ -4,9 +4,14 @@ import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Set;
 
+/**
+ * Клас ViewForAddTask реалізує додаток і виводить на консоль меню необхідне для додавання нової задачі у список.
+ * Взаємодіє із відповідним контролером ControllerForAddTask
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class ViewForAddTask implements View {
 
     @Override
@@ -15,10 +20,6 @@ public class ViewForAddTask implements View {
     }
 
     @Override
-    public void printCalendar(Map<LocalDateTime, Set<Task>> map) {
-    }
-
-    //  @Override
     public Task getInfo(Task task) {
         Task newTask;
         System.out.println();
@@ -48,11 +49,6 @@ public class ViewForAddTask implements View {
         newTask.setActive(isActive);
 
         return newTask;
-    }
-
-    //  @Override
-    public int getInfo() {
-        return 0;
     }
 
     @Override

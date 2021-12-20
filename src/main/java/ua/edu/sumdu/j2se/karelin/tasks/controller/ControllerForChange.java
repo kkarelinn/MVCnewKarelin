@@ -4,6 +4,11 @@ import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
 import ua.edu.sumdu.j2se.karelin.tasks.view.View;
 
+/**
+ * Клас ControllerForChange призначений для реалізації функції додатку,
+ * що полягає внесенні змін до однієї із задач наявного списку.
+ * Взаємодіє з відповідною ViewForChange
+ */
 public class ControllerForChange extends Controller {
     public static Task task;
 
@@ -23,9 +28,9 @@ public class ControllerForChange extends Controller {
             }
             view.getInfo(task);
             if (task.equals(currTask)) {
-                view.printMessage("..you made now change to current task..");
+                view.printMessage("..you have made NO ONE changes to current task..");
             } else {
-             if (ControllerForAllert.getNotificator()!= null)ControllerForAllert.getNotificator().setWasInfoTask(task);
+             if (ControllerForAllert.getNotificator()!= null)ControllerForAllert.getNotificator().setWasInfoTask(task, currTask);
                 taskList.notifyChange("..change was successful..");
             }
 

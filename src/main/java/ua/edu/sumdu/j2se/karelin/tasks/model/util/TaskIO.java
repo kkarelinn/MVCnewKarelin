@@ -8,18 +8,29 @@ import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.ArrayTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.model.Task;
-
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 
+/**
+ * Клас TaskIO - утилітарний клас, основне призначення якого
+ * серіалізація об'єктів списків задач у файл, та читання з нього
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
+
 public class TaskIO {
     private static final Logger log = Logger.getLogger(TaskIO.class);
 
-    //сериализуем в поток
+    /**
+     * Серіалізація бінарна у потік у визначеному форматі
+     * @param tasks - AbstractTaskList  список задач
+     * @param out - OutputStream потік виводу
+     */
+
     public static void write(AbstractTaskList tasks, OutputStream out) {
         if (tasks == null || out == null) {
             log.error("Mistake with parameters in write method");
@@ -47,7 +58,11 @@ public class TaskIO {
         }
     }
 
-    //читаем из потока
+    /**
+     * Десеріалізація бінарна з потоку у визначеному форматі
+     * @param tasks - AbstractTaskList  список задач
+     * @param in - InputStream потік вводу
+     */
     public static void read(AbstractTaskList tasks, InputStream in) {
         if (tasks == null || in == null) {
             log.error("Mistake with parameters in read method");
@@ -80,7 +95,11 @@ public class TaskIO {
         }
     }
 
-    //сериализуем в файл
+    /**
+     * Серіалізація бінарна у файл у визначеному форматі
+     * @param tasks - AbstractTaskList  список задач
+     * @param file - параметр типу File (призначення)
+     */
     public static void writeBinary(AbstractTaskList tasks, File file) {
         if (tasks == null || file == null) {
             throw new IllegalArgumentException("Something wrong with arguments");
@@ -94,7 +113,11 @@ public class TaskIO {
 
     }
 
-    //читаем из файла
+    /**
+     * Десеріалізація бінарна з файлу у визначеному форматі
+     * @param tasks - AbstractTaskList  список задач
+     * @param file - параметр типу File (джерело)
+     */
     public static void readBinary(AbstractTaskList tasks, File file) {
         if (tasks == null || file == null) {
             throw new IllegalArgumentException("Something wrong with arguments");
@@ -109,7 +132,11 @@ public class TaskIO {
 
     }
 
-    //пишем JSon в поток (Gson)
+    /**
+     * Серіалізація у потік у форматі JSon (парсер GSon)
+     * @param tasks - AbstractTaskList  список задач
+     * @param out - OutputStream потік виводу
+     */
     public static void write(AbstractTaskList tasks, Writer out) {
         if (tasks == null || out == null) {
             log.error("Mistake with parameters in write method");
@@ -127,7 +154,11 @@ public class TaskIO {
 
     }
 
-    //читаем JSon из потока (Gson)
+    /**
+     * Десеріалізація з потоку у форматі JSon (парсер GSon)
+     * @param tasks - AbstractTaskList  список задач
+     * @param in - InputStream потік вводу
+     */
     public static void read(AbstractTaskList tasks, Reader in) {
         if (tasks == null || in == null) {
             log.error("Mistake with parameters in read method");
@@ -144,7 +175,11 @@ public class TaskIO {
 
     }
 
-    //пишем JSon в файл (Gson)
+    /**
+     * Cеріалізація у файл у форматі JSon (парсер GSon)
+     * @param tasks - AbstractTaskList  список задач
+     * @param file - призначення типу File
+     */
     public static void writeText(AbstractTaskList tasks, File file) {
         if (tasks == null || file == null) {
             throw new IllegalArgumentException("Something wrong with arguments");
@@ -157,7 +192,11 @@ public class TaskIO {
         }
     }
 
-    //читаем JSon из файла (Gson)
+    /**
+     * Десеріалізація з файлу у форматі JSon (парсер GSon)
+     * @param tasks - AbstractTaskList  список задач
+     * @param file - джерело типу File
+     */
     public static void readText(AbstractTaskList tasks, File file) {
         if (tasks == null || file == null) {
             throw new IllegalArgumentException("Something wrong with arguments");

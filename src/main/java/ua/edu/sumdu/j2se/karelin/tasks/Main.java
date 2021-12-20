@@ -8,6 +8,9 @@ import java.io.*;
 import java.time.*;
 import java.util.*;
 
+/**
+ * Клас Main призначений для запуску додатку
+ */
 public class Main {
 
     public static void main(String[] args) throws Exception {

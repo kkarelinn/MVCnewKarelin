@@ -8,13 +8,24 @@ import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Клас ViewForCalendar реалізує додаток і виводить на консоль час
+ * із відповідними даними про задачі, що будуть виконанні у цей момент.
+ * Взаємодіє із відповідним контролером ControllerForCalendar
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class ViewForCalendar implements View {
     @Override
     public int printInfo(AbstractTaskList list) {
         return -1;
     }
 
-    @Override
+    /**
+     * Метод, що призначений для виводу на консоль сформованої Мапи: час виконання-список задач
+     * @param map - SortedMap
+     */
     public void printCalendar(Map<LocalDateTime, Set<Task>> map) {
         System.out.println("Calendar to the end of the CURRENT week");
         if (map.size() == 0) {
@@ -36,11 +47,6 @@ public class ViewForCalendar implements View {
     @Override
     public Task getInfo(Task task) {
         return null;
-    }
-
-    @Override
-    public int getInfo() {
-        return 0;
     }
 
     @Override

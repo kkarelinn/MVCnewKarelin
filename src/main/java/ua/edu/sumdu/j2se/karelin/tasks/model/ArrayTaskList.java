@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
+/**
+ * Клас ArrayTaskList  є реалізацією списку запланованих задач на певний проміжок часу
+ * Має функції додавання задач, видалення, редагування, створення стріму і т.п.
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
+
 public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable, Serializable {
 
     private Task[] taskMass = new Task[10]; //розмір масиву задач "за замовчуванням".
@@ -16,6 +24,11 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
 
     public ArrayTaskList() {}
 
+    /**
+     * Метод глибокого клонування списка задача
+     * @return ArrayTaskList глибоке клонування конкретного листа
+     * @throws CloneNotSupportedException
+     */
     @Override
     public ArrayTaskList clone() throws CloneNotSupportedException {
         ArrayTaskList listClone = (ArrayTaskList) super.clone();
@@ -80,6 +93,9 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
         return false;
     }
 
+    /**
+     * Метод актуалізує розмір спису
+     */
     public void setActSize() {
         int s = 0;
         for (Task temp : taskMass) {
@@ -115,11 +131,19 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
         return taskMass[index];
     }
 
+    /**
+     * Метод повертає e-num параметр, що визначаэ тип об'єкту листа
+     * @return e-num
+     */
     @Override
     ListTypes.types getType() {
         return ListTypes.types.ARRAY;
     }
 
+    /**
+     * Створення ітератору з колекції, що дозволяє пройтись по всім елементам (задачам) зі списку
+     * @return ітератор
+     */
     @Override
     public Iterator<Task> iterator() {
 
@@ -148,6 +172,12 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
         };
     }
 
+
+    /**
+     * Перевизначення equals методу для вірного порівняння списків задач
+     * @param o - вхідний параметр (інший обьєкт)
+     * @return - true - списки однакові, інакше - false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -165,6 +195,10 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
         return true;
     }
 
+    /**
+     * Перевизнаяення hashcode методу
+     * @return - хешкод
+     */
     @Override
     public int hashCode() {
         if (taskMass == null)
@@ -175,6 +209,10 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
         return result;
     }
 
+    /**
+     * Створення СТРІМа із списку задач
+     * @return СТРІМ із обьєктів задач
+     */
     @Override
     public Stream<Task> getStream() {
         return Stream.of(taskMass).limit(size());

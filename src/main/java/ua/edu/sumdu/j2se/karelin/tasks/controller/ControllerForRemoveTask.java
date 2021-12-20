@@ -3,6 +3,11 @@ package ua.edu.sumdu.j2se.karelin.tasks.controller;
 import ua.edu.sumdu.j2se.karelin.tasks.model.AbstractTaskList;
 import ua.edu.sumdu.j2se.karelin.tasks.view.View;
 
+/**
+ * Клас ControllerForRemoveTask призначений для реалізації функції додатку,
+ * що полягає видаленні обраної задачі зі списку.
+ * Взаємодіє з відповідною ViewForRemoveTask
+ */
 public class ControllerForRemoveTask extends Controller {
     public ControllerForRemoveTask(View view, int actionToPerform) {
         super(view, actionToPerform);

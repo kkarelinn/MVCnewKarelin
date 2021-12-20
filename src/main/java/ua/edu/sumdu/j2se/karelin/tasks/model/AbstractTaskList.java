@@ -2,16 +2,37 @@ package ua.edu.sumdu.j2se.karelin.tasks.model;
 
 import org.apache.log4j.Logger;
 import ua.edu.sumdu.j2se.karelin.tasks.controller.observer.ObserverForChange;
-
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
+/**
+ * Абстрактний клас списку задач, що акумуляє загальні властивості споріднених,
+ * але різних за реалізацією списків задач
+ *
+ * @author Andrii Karelin
+ *  * @version 1.0
+ */
+
 public abstract class AbstractTaskList implements Iterable<Task>,
         Cloneable, Serializable {
-
+    /**
+     * Логування подій
+     */
     static final Logger log = Logger.getLogger(AbstractTaskList.class);
 
+    /**
+     * Змінна, що визначає "Наглядача" за основними подіями (додавання, видалення, зміна) в списках
+     */
+    private ObserverForChange observer = null;
+
+    /**
+     * Встановлення (додавання) "Наглядача"
+     * @param observer
+     */
+    public void setObserver(ObserverForChange observer) {
+        this.observer = observer;
+    }
     public AbstractTaskList clone() throws CloneNotSupportedException {
         return (AbstractTaskList) super.clone();
     }
@@ -28,6 +49,10 @@ public abstract class AbstractTaskList implements Iterable<Task>,
 
     abstract ListTypes.types getType();
 
+    /**
+     * Перевизначений метод визначає формат виводу на консоль списку задач
+     * @return
+     */
     public String toString() {
         Iterator<Task> it = iterator();
         if (!it.hasNext())
@@ -47,12 +72,11 @@ public abstract class AbstractTaskList implements Iterable<Task>,
         return sb.toString();
     }
 
-    private ObserverForChange observer = null;
 
-    public void setObserver(ObserverForChange observer) {
-        this.observer = observer;
-    }
-
+    /**
+     * Метод "нотифікації"(підтвердження) для можливих змін списку задач
+     * @param message - String "повідомлення" у відповідності до дії
+     */
     public void notifyChange(String message) {
         if (observer != null)
             observer.update(message);

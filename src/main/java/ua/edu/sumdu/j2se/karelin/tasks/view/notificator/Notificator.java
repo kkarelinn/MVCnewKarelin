@@ -10,27 +10,52 @@ import java.util.Map;
 
 import static ua.edu.sumdu.j2se.karelin.tasks.view.View.log;
 
+/**
+ * Клас Notificator реалізує додаток для роботи із запланованими задачами.
+ * Метою роботи є завчасне повідомлення користувача про скоре виконання задачі.
+ * Інтервал повідомлення за замовчуванням - 5 хвилин, може бути виставлений на потрібне користувачу значення.
+ * Запускається окремим потоком.
+ *
+ * @author Andrii Karelin
+ * @version 1.0
+ */
 public class Notificator extends Thread {
 
     private AbstractTaskList list;
-    private int timeInMinutes = -1;
+    private int timeInMinutes = 5;
     private Map<Task, Boolean> wasInfo = new LinkedHashMap<>();
 
-    public void setWasInfoTask(Task task) {
-        this.wasInfo.put(task,false);
+    /**
+     * Метод "обнулення" нотифікації для задачі, що змінилася
+     * @param newTask - змінена задача
+     * @param oldTask - задача, що була у списку до змін
+     */
+    public void setWasInfoTask(Task newTask, Task oldTask) {
+        if (wasInfo.containsKey(oldTask))this.wasInfo.remove(oldTask);
+        this.wasInfo.put(newTask,false);
     }
 
 
-
+    /**
+     * Метод вставновлення інтервалу (у хвилинах)
+     * @param timeInMinutes
+     */
     public void setTimeInMinutes(int timeInMinutes) {
         this.timeInMinutes = timeInMinutes;
     }
 
+    /**
+     * Конструктор, що створяє МАРу із відмітками, що була вже нотифікація по конкретній задачі
+     * @param list - AbstractTaskList - список задач
+     */
     public Notificator(AbstractTaskList list) {
         this.list = list;
         list.getStream().forEach((t)->this.wasInfo.put(t,false));
     }
 
+    /**
+     * Основна логіка методу періодичної перевірки часу найближчого виконання запланованих задач
+     */
     @Override
     public void run() {
         try {
@@ -41,7 +66,6 @@ public class Notificator extends Thread {
 
         LocalDateTime curTime;
         System.out.println();
-
 
         while (true) {
             curTime = LocalDateTime.now();
